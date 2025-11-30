@@ -1,5 +1,4 @@
 // taskbar clock
-const today = new Date();
 
 function startTime() {
     const today = new Date();
@@ -60,6 +59,19 @@ function back() {
     titleBar.innerHTML = "My Computer";
 }
 
+// start menu functionality
+const start = document.querySelector('.start')
+const startMenu = document.querySelector('.startmenu')
+start.addEventListener('click', () => {
+    if (startMenu.style.display == 'flex') {   
+        startMenu.style.display = 'none'
+    }
+    else {
+        startMenu.style.display = 'flex'
+    }
+})
+
+
 // window functionality
 function openApp(element) {
     const app = element.getAttribute("app");
@@ -85,6 +97,8 @@ document.querySelectorAll(".window").forEach(window => {
         window.style.zIndex = ++topZ;
     })
 })
+
+document.querySelector(".christtree").addEventListener('mousedown', startDrag)
 
 function startDrag(e) {
     const windowE = e.target.parentElement;

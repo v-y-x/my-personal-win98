@@ -1,4 +1,4 @@
-html, body {
+html {
     height: 100%;
     margin: 0;
     display: flex;
@@ -98,6 +98,8 @@ a {
     padding:4px;
     display: none;
     align-items: center;
+    user-select: none;
+    z-index: 99;
 }
 
 .notif-area {
@@ -132,6 +134,46 @@ a {
     display: flex;
     flex-direction: row;
     align-items:center;
+}
+
+/* start menu */
+
+.startmenu {
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    width: 250px;
+    height: 400px;
+    display: none;
+    flex-direction: row;
+    user-select: none;
+}
+
+.bluebar {
+    width: 30px;
+    height: 100%;
+    background: #1700c4; 
+    display: flex;
+    flex-direction: column-reverse;
+    writing-mode:sideways-lr;
+}
+
+.starttext {
+    text-orientation:mixed;
+    font-size: 2em;
+    height: 100%;
+    width: 100%;
+    margin: 0 0 8px 2px;
+    color:white;
+}
+
+.startlist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    font-size: 2em;
 }
 
 /* wordpad */
@@ -657,4 +699,9 @@ a {
 
 .title-bar { 
     user-select: none;
+}
+
+.christtree {
+    visibility: hidden;
+    display: none;
 }

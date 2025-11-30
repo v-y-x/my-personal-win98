@@ -1,0 +1,22 @@
+html {
+    background-color: darkblue;
+    background-image: url(snowflake_60op.png);
+    background-repeat: space;
+    background-size: 128px;
+}
+
+.christtree {
+    display: block;
+    position: absolute;
+    right: 50px;
+    bottom: 70px;
+    user-select: none;
+}
+
+.bluebar {
+    background:linear-gradient(darkgreen, darkgrey, red);
+}
+
+.christtree img {
+    width: 300px;
+}
