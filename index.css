@@ -605,8 +605,11 @@ a {
 /* error box */
 
 .error-box {
+    position: absolute;
     z-index: 99;
     overflow: auto;
+    top:500px;
+    left:800px
 }
 
 .error-body {

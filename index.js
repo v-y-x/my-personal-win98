@@ -71,11 +71,19 @@ start.addEventListener('click', () => {
     }
 })
 
+document.addEventListener("mousedown", (event) => {
+    if (startMenu.style.display !== "none") {
+        if (event.target.closest(".startmenu") || event.target.closest(".start")) return;  
+        startMenu.style.display = 'none';
+    }
+});
+
 
 // window functionality
 function openApp(element) {
     const app = element.getAttribute("app");
     document.querySelector("." + app).style.display = "block";
+    document.querySelector("." + app).style.zIndex = ++topZ;
 }
 
 function closeApp(element) {
@@ -464,9 +472,9 @@ login.addEventListener("click", async function loginAnim() {
 // error box code
 
 var error_sfx = new Audio('resources/win98_CHORD.flac');
+const errorBox = document.getElementById("error-box")
 
 document.addEventListener("keydown", function (event) {
-    const errorBox = document.getElementById("error-box")
     if (event.key == "Enter" && errorBox.style.display !== "none") {
         event.preventDefault();
         document.getElementById("errorOK").click();
@@ -476,12 +484,15 @@ document.addEventListener("keydown", function (event) {
 function showError(element) {
     const message = element.getAttribute("data-error");
     document.getElementById("error-message").innerHTML = message;
-    document.getElementById("error-box").style.display = "block";
+    errorBox.style.display = "block";
+    errorBox.style.zIndex = ++topZ;
     error_sfx.play();
 }  
 
 function closeError() {
-    document.getElementById("error-box").style.display = "none";
+    errorBox.style.display = "none";
+    errorBox.style.top = 500 + 'px';
+    errorBox.style.left = 800 + 'px';
 }
 
 window.onload = startTime();
