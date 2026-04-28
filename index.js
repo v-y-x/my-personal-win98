@@ -68,6 +68,7 @@ start.addEventListener('click', () => {
     }
     else {
         startMenu.style.display = 'flex'
+        startMenu.style.zIndex = ++topZ
     }
 })
 
@@ -78,6 +79,19 @@ document.addEventListener("mousedown", (event) => {
     }
 });
 
+document.querySelectorAll('.start-item').forEach(list => {
+    list.addEventListener('click', () => {
+        startMenu.style.display = 'none'
+    })
+})
+
+document.getElementById('shutdown-btn').addEventListener('click', () => {
+    window.close()
+})
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+    window.location.reload()
+})
 
 // window functionality
 function openApp(element) {
@@ -176,7 +190,7 @@ switch (day) {
         invisMessage = "how old are you romanian tickling bandit";
         break;
     case 4:
-        invisMessage = "i never thought i would have a folder titled \"furries\" in my pictues";
+        invisMessage = "i never thought i would have a folder titled \"furries\" in my pictures";
         break;
     case 5:
         invisMessage = "ok just give me a sex";
@@ -395,6 +409,86 @@ oneBut.addEventListener('click', function () {
         gachaOK.style.display = 'block';
     }, 5260)
 })
+
+// media player functionality
+const audio = new Audio();
+
+const playBtn = document.getElementById('play-button');
+const buttonImg = document.getElementById('button-img')
+const trackBar = document.getElementById('track-bar');
+const currentTimeLabel = document.getElementById('current-time');
+const totalTimeLabel = document.getElementById('total-time');
+const volumeBar = document.getElementById('vol');
+
+// play/pause button
+playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+        buttonImg.src = 'resources/win98 icons/pause.png';
+    } else {
+        audio.pause();
+        buttonImg.src = 'resources/win98 icons/play.png';
+    }
+});
+
+// track bar and time sycning
+audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    trackBar.value = (audio.currentTime / audio.duration) * 100;
+    currentTimeLabel.textContent = formatTime(audio.currentTime);
+});
+
+audio.addEventListener('loadedmetadata', () => {
+    totalTimeLabel.textContent = formatTime(audio.duration);
+});
+
+// track bar seeking
+trackBar.addEventListener('input', () => {
+    if (!audio.duration) return;
+    audio.currentTime = (trackBar.value / 100) * audio.duration;
+});
+
+// volume bar
+volumeBar.addEventListener('input', () => {
+    audio.volume = volumeBar.value / 100;
+});
+
+// time formatter
+function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+}
+
+const player = document.querySelector('.music-player')
+// grab all tracks, then detect with addEventListener
+document.querySelectorAll('.track').forEach(track => {
+    track.addEventListener('dblclick', () => {
+        openPlayer(track.dataset.src, track.dataset.name)
+    })
+})
+
+// opening media player
+function openPlayer(trackSrc, trackName) {
+    player.style.display = 'block'
+    player.style.zIndex = ++topZ
+
+    audio.src = trackSrc
+    audio.load()
+    audio.play()
+
+    document.getElementById('track-name').textContent = trackName
+    buttonImg.src = 'resources/win98 icons/pause.png'
+    totalTimeLabel.textContent = '0:00'
+}
+
+function closePlayer() {
+    player.style.display = 'none'
+    audio.pause()
+    buttonImg.src = 'resources/win98 icons/play.png'
+    player.style.top = 50 + 'px';
+    player.style.left = 100 + 'px';
+}
 
 // login easter eggs
 function getName() {
