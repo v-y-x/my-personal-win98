@@ -544,11 +544,6 @@ a {
 }
 
 .gachaGame {
-    position: absolute;
-    top: 50px;
-    left: 100px;
-    width: 650px;
-    height: 360px;
     display: none;
 }
 
@@ -601,39 +596,6 @@ a {
 .frost-folder img{
     width: 25%;
     height: 80%;
-}
-
-/* discord drama generator */
-
-.discordDrama {
-    position: absolute;
-    top: 100px;
-    left:50px
-}
-
-.DDG-menu {
-    display: flex;
-    flex-direction: column;
-    font-size: 2em;
-    gap: 14px;
-    margin: 14px;
-    align-items: center;
-}
-
-.DDG-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding-bottom: 10px;
-}
-
-.discordApp {
-    visibility: hidden;
-}
-
-#sub-head {
-    opacity: 50%;
-    font-size: .4em;
 }
 
 /* error box */

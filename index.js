@@ -541,7 +541,6 @@ function easter_egg() {
             message = "<video autoplay src='resources/hello.mp4'>"
         }
         
-        
         document.getElementById("egg").innerHTML = message;
     }
 
